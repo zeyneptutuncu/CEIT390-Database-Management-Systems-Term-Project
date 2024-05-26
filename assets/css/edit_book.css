@@ -1,0 +1,124 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+    margin-top: 0; /* Remove default body margin */
+    padding-top: 0; /* Remove default body padding */
+}
+
+.navbar {
+    background-color: rgba(253, 111, 130, 0.9);
+    padding: 0.5rem 10%;
+    margin-top: 0; /* Adjust navbar margin */
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+    color: white !important;
+}
+
+.custom-navbar .nav-link:hover {
+    color: lightgray !important;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+h2 {
+    color: #fd6f82;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: inline-block;
+    width: 48%;
+    margin-right: 2%;
+    margin-bottom: 20px; /* Add space between rows */
+}
+
+.form-group:nth-child(2n) {
+    margin-right: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.btn-search {
+    background-color: #fd6f82;
+    color: white;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    border: #fd6f82;
+    padding: 10px 0;
+}
+
+.btn-search:hover {
+    background-color: #e05a6e;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    position: absolute; /* Change to absolute */
+    width: 100%;
+    bottom: 0;
+    text-align: center; /* Center align the text */
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Adjust the height to fit content better */
+}
+
+.form-box {
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 400px;
+}
+
+.form-box h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #fd6f82;
+    border-color: #fd6f82;
+}
+
+.btn-primary:hover {
+    background-color: #d85067;
+    border-color: #d85067;
+}
+
+.form-control::placeholder {
+    color: #6c757d; /* Placeholder color */
+}
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+

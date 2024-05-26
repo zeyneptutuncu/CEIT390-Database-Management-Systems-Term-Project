@@ -1,0 +1,82 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Arka plan rengi */
+    color: #343a40; /* Metin rengi */
+}
+
+.navbar {
+    background-color: rgba(253, 111, 130, 0.9); /* Transparan pembe renk */
+    padding: 0.5rem 10%;
+    margin-top: -20px; /* Navbarı yukarı çıkarmak için */
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+    color: white !important; /* Beyaz renk */
+}
+
+.custom-navbar .nav-link:hover {
+    color: lightgray !important; /* Açık gri renk */
+}
+
+.container {
+    margin-top: 20px;
+}
+
+h1 {
+    color: #fd6f82; /* Başlık rengi */
+}
+
+.btn-search {
+    background-color: #fd6f82;
+    color: white;
+    margin-top: 10px; /* Buton ile üst yazı arasındaki boşluk */
+    margin-left: 0; /* Butonu sağa kaydırmak için */
+    height: 40px; /* Buton yüksekliği */
+}
+
+.btn-search:hover {
+    background-color: #e05a6e;
+    color: white;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: calc(100vh - 70px); /* Navbar yüksekliğini çıkar */
+    text-align: left;
+    padding: 0 50px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.library-image {
+    max-width: 400px;
+    height: auto;
+    margin-left: 50px;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer p {
+    margin: 0;
+    color: #fd6f82;
+}
+
+p {
+    margin-bottom: 10px; /* Yazı ile arama çubuğu arasındaki mesafe */
+    text-align: left;
+}
