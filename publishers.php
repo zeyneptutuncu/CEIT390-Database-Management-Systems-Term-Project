@@ -10,11 +10,14 @@ if (!isset($_SESSION['user_id'])) {
 
 include('includes/config.php');
 
+$order = isset($_GET['order']) ? $_GET['order'] : 'asc';
+
 try {
     $sql = "SELECT publisher_name, address, phone_number, GROUP_CONCAT(book_name SEPARATOR ', ') as books, GROUP_CONCAT(ISBN SEPARATOR ', ') as isbns 
             FROM publishers 
             WHERE publisher_name IS NOT NULL 
-            GROUP BY publisher_name, address, phone_number";
+            GROUP BY publisher_name, address, phone_number 
+            ORDER BY publisher_name " . ($order === 'desc' ? 'DESC' : 'ASC');
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     $publishers = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -70,15 +73,24 @@ try {
             margin-top: 10px;
             font-weight: bold;
         }
+        .sortable-header {
+            text-decoration: none;
+            color: inherit; /* Diğer kolon isimleri ile aynı renk */
+        }
+        .sortable-header:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <?php include('includes/loginheader.php'); ?>
     <div class="container">
         <h1>Publishers</h1>
-        <div class="text-end mb-3">
-            <a href="add_publisher.php" class="add-publisher-button">Add Publisher</a>
-        </div>
+        <?php if ($_SESSION['role'] === 'admin'): ?>
+            <div class="text-end mb-3">
+                <a href="add_publisher.php" class="add-publisher-button">Add Publisher</a>
+            </div>
+        <?php endif; ?>
         <div class="search-container">
             <input type="text" class="form-control" id="searchInput" placeholder="Search publishers..." onkeydown="if (event.key === 'Enter') searchPublishers()">
             <button class="btn btn-primary" onclick="searchPublishers()">Search</button>
@@ -87,7 +99,11 @@ try {
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Publisher Name</th>
+                    <th>
+                        <a href="?order=<?php echo $order === 'asc' ? 'desc' : 'asc'; ?>" class="sortable-header">
+                            Publisher Name <?php echo $order === 'asc' ? '↑' : '↓'; ?>
+                        </a>
+                    </th>
                     <th>Address</th>
                     <th>Phone Number</th>
                     <th>Books</th>

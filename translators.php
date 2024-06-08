@@ -10,8 +10,10 @@ if (!isset($_SESSION['user_id'])) {
 
 include('includes/config.php');
 
+$order = isset($_GET['order']) ? $_GET['order'] : 'asc';
+
 try {
-    $sql = "SELECT * FROM translators WHERE translator_name IS NOT NULL";
+    $sql = "SELECT * FROM translators WHERE translator_name IS NOT NULL ORDER BY translator_name " . ($order === 'desc' ? 'DESC' : 'ASC');
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     $translators = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -75,15 +77,24 @@ try {
             margin-top: 10px;
             font-weight: bold;
         }
+        .sortable-header {
+            text-decoration: none;
+            color: inherit; /* Diğer kolon isimleri ile aynı renk */
+        }
+        .sortable-header:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <?php include('includes/loginheader.php'); ?>
     <div class="container">
         <h1>Translators</h1>
-        <div class="button-container">
-            <a href="add_translator.php" class="btn btn-pink">Add Translator</a>
-        </div>
+        <?php if ($_SESSION['role'] === 'admin'): ?>
+            <div class="button-container">
+                <a href="add_translator.php" class="btn btn-pink">Add Translator</a>
+            </div>
+        <?php endif; ?>
         <div class="search-container">
             <input type="text" class="form-control" id="searchInput" placeholder="Search translators..." onkeydown="if (event.key === 'Enter') searchTranslators()">
             <button class="btn btn-pink" onclick="searchTranslators()">Search</button>
@@ -92,10 +103,17 @@ try {
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Translator Name</th>
+                    <th>
+                        <a href="?order=<?php echo $order === 'asc' ? 'desc' : 'asc'; ?>" class="sortable-header">
+                            Translator Name <?php echo $order === 'asc' ? '↑' : '↓'; ?>
+                        </a>
+                    </th>
                     <th>Languages</th>
                     <th>Book Count</th>
                     <th>ISBNs</th>
+                    <?php if ($_SESSION['role'] === 'admin'): ?>
+                        <th class="center-align">Edit</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody id="translatorTableBody">
@@ -113,6 +131,11 @@ try {
                                 ?>
                             </div>
                         </td>
+                        <?php if ($_SESSION['role'] === 'admin'): ?>
+                            <td class="center-align">
+                                <a href="edit_translator.php?id=<?php echo $translatorData['translator_id']; ?>" class="btn btn-warning">Edit</a>
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

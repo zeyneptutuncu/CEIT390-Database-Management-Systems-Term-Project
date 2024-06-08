@@ -154,8 +154,8 @@ $media_types = ["PDF", "ePub"];
                 <input type="date" class="form-control" id="publication_date" name="publication_date" value="<?php echo htmlspecialchars($book['publication_date'] ?? ''); ?>">
             </div>
             <div class="form-group">
-                <label for="publisher_name">Publisher <span class="required">*</span></label>
-                <input type="text" class="form-control" id="publisher_name" name="publisher_name" value="<?php echo htmlspecialchars($book['publisher_name'] ?? ''); ?>" required>
+                <label for="publisher_name">Publisher</label>
+                <input type="text" class="form-control" id="publisher_name" name="publisher_name" value="<?php echo htmlspecialchars($book['publisher_name'] ?? ''); ?>">
             </div>
             <div class="form-group">
                 <label for="language">Language</label>

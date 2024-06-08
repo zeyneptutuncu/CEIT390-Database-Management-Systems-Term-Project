@@ -201,6 +201,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_list'])) {
             bottom: 20px;
             right: 20px;
         }
+
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f8f9fa;
+            width: 100%;
+            bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -405,5 +413,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_list'])) {
             });
         });
     </script>
+    <div class="footer">
+        &copy; CEIT390 | Online Library Management System
+    </div>
 </body>
 </html>

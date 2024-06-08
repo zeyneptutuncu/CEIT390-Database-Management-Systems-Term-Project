@@ -71,8 +71,8 @@ try {
             margin-bottom: 20px;
         }
         .sortable-header {
-            color: #fd6f82;
             text-decoration: none;
+            color: inherit; /* Diğer kolon isimleri ile aynı renk */
         }
         .sortable-header:hover {
             text-decoration: underline;
@@ -83,9 +83,11 @@ try {
     <?php include('includes/loginheader.php'); ?> <!-- Header dosyasını dahil et -->
     <div class="container">
         <h1>Authors</h1>
-        <div class="button-container">
-            <a href="add_author.php" class="btn btn-pink">Add Author</a>
-        </div>
+        <?php if ($_SESSION['role'] === 'admin'): ?>
+            <div class="button-container">
+                <a href="add_author.php" class="btn btn-pink">Add Author</a>
+            </div>
+        <?php endif; ?>
         <div class="search-container">
             <input type="text" class="form-control" id="searchInput" placeholder="Search authors..." onkeydown="if (event.key === 'Enter') searchAuthors()">
             <button class="btn btn-pink" onclick="searchAuthors()">Search</button>
